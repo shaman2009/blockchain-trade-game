@@ -16,7 +16,10 @@
     <h1>Basic Login With Sails</h1>
 
     <% if (req.session.me) { %>
-    <a href="/logout">Logout</a>
+    <a href="/logout">Logout</a> |
+    <a href="/article/add">Submit your article</a> |
+    <a href="/explore">Explore</a>
+
     <% } else { %>
     <a href="/login">Login</a> | <a href="/signup">Signup</a>
     <% } %>

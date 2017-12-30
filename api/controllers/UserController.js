@@ -53,7 +53,7 @@ module.exports = {
     return res.login({
       name: req.param('name'),
       password: req.param('password'),
-      successRedirect: '/welcome',
+      successRedirect: '/',
       invalidRedirect: '/login'
     });
   },
