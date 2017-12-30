@@ -21,7 +21,6 @@ module.exports = {
     // Attempt to signup a user using the provided parameters
     User.signup({
       name: req.param('name'),
-      email: req.param('email'),
       password: req.param('password')
     }, function (err, user) {
       // res.negotiate() will determine if this is a validation error
@@ -43,9 +42,40 @@ module.exports = {
       // Otherwise if this is an HTML-wanting browser, redirect to /welcome.
       return res.redirect('/welcome');
     });
+  },
+
+  /**
+   * `UserController.login()`
+   */
+  login: function (req, res) {
+
+    // See `api/responses/login.js`
+    return res.login({
+      name: req.param('name'),
+      password: req.param('password'),
+      successRedirect: '/welcome',
+      invalidRedirect: '/login'
+    });
+  },
+    /**
+   * `UserController.logout()`
+   */
+  logout: function (req, res) {
+
+    // "Forget" the user from the session.
+    // Subsequent requests from this user agent will NOT have `req.session.me`.
+    req.session.me = null;
+
+    // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
+    // send a simple response letting the user agent know they were logged out
+    // successfully.
+    if (req.wantsJSON) {
+      return res.ok('Logged out successfully!');
+    }
+
+    // Otherwise if this is an HTML-wanting browser, do a redirect.
+    return res.redirect('/');
   }
 
-
-    
 };
 

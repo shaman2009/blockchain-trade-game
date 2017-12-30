@@ -8,7 +8,6 @@
 module.exports = {
 
   attributes: {
-    // e.g., "Polly"
     name: {
       type: 'string',
       required: true,
@@ -17,15 +16,7 @@ module.exports = {
     password: {
       type: 'string',
       required: true,
-    },
-
-
-    // e.g., "cm"
-    wingspanUnits: {
-      type: 'string',
-      enum: ['cm', 'in', 'm', 'mm'],
-      defaultsTo: 'cm'
-    },
+    }
   },
 
 
@@ -35,7 +26,6 @@ module.exports = {
    *
    * @param  {Object}   inputs
    *                     • name     {String}
-   *                     • email    {String}
    *                     • password {String}
    * @param  {Function} cb
    */
@@ -44,11 +34,29 @@ module.exports = {
     // Create a user
     User.create({
       name: inputs.name,
-      email: inputs.email,
       // TODO: But encrypt the password first
       password: inputs.password
     })
-    .exec(cb);
+      .exec(cb);
+  },
+  /**
+ * Check validness of a login using the provided inputs.
+ * But encrypt the password first.
+ *
+ * @param  {Object}   inputs
+ *                     • name    {String}
+ *                     • password {String}
+ * @param  {Function} cb
+ */
+
+  attemptLogin: function (inputs, cb) {
+    // Create a user
+    User.findOne({
+      name: inputs.name,
+      // TODO: But encrypt the password first
+      password: inputs.password
+    })
+      .exec(cb);
   }
 };
 
