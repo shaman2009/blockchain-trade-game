@@ -42,7 +42,7 @@ module.exports.routes = {
   'post /login': 'UserController.login',
   'post /signup': 'UserController.signup',
   '/logout': 'UserController.logout',
-  '/explore': '/article',
+  // '/explore': 'ArticleController.explore',
 
   /***************************************************************************
   *                                                                          *
