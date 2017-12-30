@@ -1,13 +1,22 @@
-<h1>Login</h1>
-<form action="/login" method="post">
+<% include ../partials/head %>
 
-  <label for="name">Your name ?</label>
-  <input name="name" type="text"/>
-  <br/>
 
-  <label for="password">Your safe word?</label>
-  <input name="password" type="password"/>
-  <br/>
+  <div class="default-page">
+    <% data= 'Login'; %>
+      <% include ../partials/header %>
 
-  <input type="submit"/>
-</form>
+        <div class="main container clearfix">
+          <form action="/login" method="post">
+
+            <label for="name">Your name ?</label>
+            <input name="name" type="text" />
+            <br/>
+
+            <label for="password">Your safe word?</label>
+            <input name="password" type="password" />
+            <br/>
+
+            <input type="submit" />
+          </form>
+        </div>
+  </div>

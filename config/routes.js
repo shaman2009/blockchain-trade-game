@@ -32,17 +32,22 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'homepage' },
+  '/': {
+    view: 'homepage', locals: {
+      layout: 'layout'
+    }
+  },
   'get /login': { view: 'user/login' },
   'get /signup': { view: 'user/signup' },
   '/welcome': { view: 'user/welcome' },
-  '/article/add': { view: 'article/add'},
+  '/article/add': { view: 'article/add' },
 
   // Endpoints
   'post /login': 'UserController.login',
   'post /signup': 'UserController.signup',
   '/logout': 'UserController.logout',
-  // '/explore': 'ArticleController.explore',
+  '/explore': 'ArticleController.explore',
+  '/article/new': 'ArticleController.new',
 
   /***************************************************************************
   *                                                                          *

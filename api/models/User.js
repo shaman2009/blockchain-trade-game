@@ -16,6 +16,13 @@ module.exports = {
     password: {
       type: 'string',
       required: true,
+    },
+    point: {
+      model: 'point'
+    },
+    articles: {
+      collection: 'article',
+      via: 'owner'
     }
   },
 
