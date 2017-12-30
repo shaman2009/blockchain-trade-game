@@ -1,17 +1,28 @@
 <% include ../partials/head %>
 
 
-  <div class="default-page">
-    <% data= 'Available downloads:'; %>
-    <% include ../partials/header %>
+    <div class="default-page">
+        <% data= 'Available downloads:'; %>
+            <% include ../partials/header %>
 
-      <div class="main container clearfix">
-        <ul>
-            <% _.each(articles, function (articles) { %>
-                <li>
-                    <%= articles.name %>
-                </li>
-                <% }) %>
-        </ul>
-      </div>
-  </div>
+                <div class="main container clearfix">
+                    <div class="links">
+
+                        <ul class="link-list">
+
+                            <% _.each(articles, function (articles) { %>
+                                <li>
+                                    <%= articles.name %>
+                                </li>
+                                <% }) %>
+
+
+                                <br/><br/>
+                                <a href="/">Back to home page</a>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+    </div>
