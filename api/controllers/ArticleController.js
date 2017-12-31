@@ -17,6 +17,8 @@ module.exports = {
     },
     explore: function (req, res) {
         Article.find({}, function (err, data) {
+            if (err) return res.negotiate(err);
+
             return res.view('article/explore', {
                 articles: data
             });

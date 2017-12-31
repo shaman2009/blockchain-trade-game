@@ -32,11 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage', locals: {
-      layout: 'layout'
-    }
-  },
+  '/': { view: 'homepage' },
   'get /login': { view: 'user/login' },
   'get /signup': { view: 'user/signup' },
   '/welcome': { view: 'user/welcome' },
@@ -48,6 +44,7 @@ module.exports.routes = {
   '/logout': 'UserController.logout',
   '/explore': 'ArticleController.explore',
   '/article/new': 'ArticleController.new',
+  '/point': 'PointController.query',
 
   /***************************************************************************
   *                                                                          *
