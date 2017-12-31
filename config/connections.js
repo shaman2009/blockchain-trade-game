@@ -46,9 +46,20 @@ module.exports.connections = {
     port: '6612',
     user: 'root', //optional
     password: 'admin', //optional
-    database: 'blockchain-trade-game' //optional
+    database: 'blockchain-trade-game', //optional
+    charset: "utf8mb4",
+    collation: "utf8mb4_general_ci",
   },
 
+  prodMysqlServer: {
+    adapter: 'sails-mysql',
+    host: 'perfectblude.mysql.rds.aliyuncs.com',
+    user: 'proot', //optional
+    charset: "utf8mb4",
+    collation: "utf8mb4_general_ci",
+    password: 'xxxx', //optional
+    database: 'blockchain-trade-game' //optional
+  },
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
