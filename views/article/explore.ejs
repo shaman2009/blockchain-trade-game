@@ -6,12 +6,11 @@
             <% include ../partials/header %>
 
                 <div class="main container clearfix">
-                    <div class="links">
 
                         <ul class="link-list">
 
                             <% _.each(articles, function (articles) { %>
-                                <li>
+                                <li id= <%= articles.id %>> download | 
                                 <%= articles.name %>
                                 </li>
                                 <% }) %>
@@ -21,7 +20,6 @@
                                 <a href="/">Back to home page</a>
 
                         </ul>
-                    </div>
 
                 </div>
 
