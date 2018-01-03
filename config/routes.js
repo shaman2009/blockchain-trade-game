@@ -45,6 +45,9 @@ module.exports.routes = {
   '/explore': 'ArticleController.explore',
   '/article/new': 'ArticleController.new',
   '/point': 'PointController.query',
+  'post /file/upload': 'FileController.upload',
+  'get /file/download': 'FileController.download',
+  'get /file/index': 'FileController.index',
 
   /***************************************************************************
   *                                                                          *

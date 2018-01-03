@@ -55,6 +55,12 @@ module.exports.policies = {
     '*': 'isAuthenticated',
     login: true,
     signup: true
+  },
+  FileController: {
+    '*': 'isAuthenticated',
+    upload: true,
+    download: true,
+    index: true
   }
 
 };
