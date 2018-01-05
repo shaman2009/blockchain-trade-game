@@ -48,6 +48,9 @@ module.exports.routes = {
   'post /file/upload': 'FileController.upload',
   'get /file/download': 'FileController.download',
   'get /file/index': 'FileController.index',
+  'get /user/index': 'UserController.index',
+  'post /user/uploadAvatar': 'UserController.uploadAvatar',
+  'get /user/avatar/:id': 'UserController.avatar',
 
   /***************************************************************************
   *                                                                          *

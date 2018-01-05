@@ -23,6 +23,12 @@ module.exports = {
     articles: {
       collection: 'article',
       via: 'owner'
+    },
+    avatarUrl: {
+      type: 'string'
+    },
+    avatarFd: {
+      type: 'string'
     }
   },
 
