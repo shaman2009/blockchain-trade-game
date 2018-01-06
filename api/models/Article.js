@@ -16,6 +16,12 @@ module.exports = {
     owner: {
       model: 'user',
       required: true
+    },
+    fileUrl: {
+      type: 'string'
+    },
+    fileFd: {
+      type: 'string'
     }
   }
 };

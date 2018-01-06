@@ -10,7 +10,7 @@
                         <ul class="link-list">
 
                             <% _.each(articles, function (articles) { %>
-                                <li id= <%= articles.id %>> download | 
+                                <li id= <%= articles.id %>> <a href="/article/file/<%= articles.id %>">download</a> | 
                                 <%= articles.name %>
                                 </li>
                                 <% }) %>
