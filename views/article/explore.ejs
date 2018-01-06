@@ -11,7 +11,8 @@
 
                             <% _.each(articles, function (articles) { %>
                                 <li id= <%= articles.id %>> <a href="/article/file/<%= articles.id %>">download</a> | 
-                                <%= articles.name %>
+                                <%= articles.name %> |
+                                point : <%= articles.price %>
                                 </li>
                                 <% }) %>
 

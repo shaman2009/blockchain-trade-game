@@ -22,7 +22,18 @@ module.exports = {
     },
     fileFd: {
       type: 'string'
+    },
+    price: {
+      type: 'integer',
+      required: true,
     }
+  },
+
+
+  generatePoint: function () {
+    const start = 1;
+    const end = 3;
+    return Math.floor(Math.random() * (end - start) + start);
   }
 };
 

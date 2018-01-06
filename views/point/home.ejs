@@ -6,20 +6,21 @@
             <% include ../partials/header %>
 
                 <div class="main container clearfix">
-                    <div class="links">
-
-                        <ul class="link-list">
-
-                            Amount: <%= point.amount%>
 
 
+                    Amount:
+                    <%= point.amount%>
 
-                                <br/>
-                                <br/>
-                                <a href="/">Back to home page</a>
+                        <% if (point.toast) { %>
+                            |
+                            <%= point.toast %>
 
-                        </ul>
-                    </div>
+                                <% } %>
+
+                                    <br/>
+                                    <br/>
+                                    <a href="/">Back to home page</a>
+
 
                 </div>
 

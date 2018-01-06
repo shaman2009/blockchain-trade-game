@@ -19,7 +19,8 @@ module.exports = {
             Article.create({
                 name: req.param('name'),
                 owner: req.session.me,
-                fileFd: uploadedFiles[0].fd
+                fileFd: uploadedFiles[0].fd,
+                price: Article.generatePoint()
             }, function (err, data) {
                 if (err) return res.negotiate(err);
                 return res.redirect('/explore');
@@ -48,18 +49,28 @@ module.exports = {
                 return res.notFound();
             }
 
-            var SkipperDisk = require('skipper-disk');
-            var fileAdapter = SkipperDisk(/* optional opts */);
+            Point.findOne({ user: req.session.me }).exec(function (err, point) {
+                if (err) return res.negotiate(err);
+                if (article.price > point.amount) {
+                    point.toast = "Resoucres can't be downloaded, lack of points !!! "
+                    return res.view('point/home', {
+                        point: point
+                    });
+                }
+                
+                var SkipperDisk = require('skipper-disk');
+                var fileAdapter = SkipperDisk(/* optional opts */);
 
-            // set the filename to the same file as the article uploaded
-            res.set("Content-disposition", "attachment; filename='" + article.name + "'");
+                // set the filename to the same file as the article uploaded
+                res.set("Content-disposition", "attachment; filename='" + article.name + "'");
 
-            // Stream the file down
-            fileAdapter.read(article.fileFd)
-                .on('error', function (err) {
-                    return res.serverError(err);
-                })
-                .pipe(res);
+                // Stream the file down
+                fileAdapter.read(article.fileFd)
+                    .on('error', function (err) {
+                        return res.serverError(err);
+                    })
+                    .pipe(res);
+            })
         });
     }
 }
