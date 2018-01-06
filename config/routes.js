@@ -46,7 +46,6 @@ module.exports.routes = {
   '/article/new': 'ArticleController.new',
   '/point': 'PointController.query',
   'post /file/upload': 'FileController.upload',
-  'get /file/download': 'FileController.download',
   'get /file/index': 'FileController.index',
   'get /user/index': 'UserController.index',
   'post /user/uploadAvatar': 'UserController.uploadAvatar',

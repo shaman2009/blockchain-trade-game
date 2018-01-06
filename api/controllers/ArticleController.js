@@ -56,20 +56,38 @@ module.exports = {
                     return res.view('point/home', {
                         point: point
                     });
-                }
-                
-                var SkipperDisk = require('skipper-disk');
-                var fileAdapter = SkipperDisk(/* optional opts */);
+                };
 
-                // set the filename to the same file as the article uploaded
-                res.set("Content-disposition", "attachment; filename='" + article.name + "'");
+                // 扣分
+                Point.update({ user: req.session.me }, { amount: point.amount - article.price }).exec(function (err) {
+                    if (err) return res.negotiate(err);
 
-                // Stream the file down
-                fileAdapter.read(article.fileFd)
-                    .on('error', function (err) {
-                        return res.serverError(err);
-                    })
-                    .pipe(res);
+
+                    // 加分
+                    Point.findOne({ user: article.owner }).exec(function (err, ownerPoint) {
+                        if (err) return res.negotiate(err);
+                        Point.update({ user: article.owner }, { amount: ownerPoint.amount + article.price }).exec(function (err) {
+                            if (err) return res.negotiate(err);
+
+
+                            var SkipperDisk = require('skipper-disk');
+                            var fileAdapter = SkipperDisk(/* optional opts */);
+
+                            // set the filename to the same file as the article uploaded
+                            res.set("Content-disposition", "attachment; filename='" + article.name + "'");
+
+                            // Stream the file down
+                            fileAdapter.read(article.fileFd)
+                                .on('error', function (err) {
+                                    return res.serverError(err);
+                                })
+                                .pipe(res);
+                        });
+                    });
+
+
+                });
+
             })
         });
     }

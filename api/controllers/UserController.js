@@ -35,12 +35,20 @@ module.exports = {
 
       // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
       // send a 200 response letting the user agent know the signup was successful.
-      if (req.wantsJSON) {
-        return res.ok('Signup successful!');
-      }
 
-      // Otherwise if this is an HTML-wanting browser, redirect to /welcome.
-      return res.redirect('/welcome');
+      const INITIAL_AMOUT = 10;
+
+      Point.create({ user: req.session.me, amount: INITIAL_AMOUT }).exec(function (err, data) {
+        if (err) return res.negotiate(err);
+
+
+        if (req.wantsJSON) {
+          return res.ok('Signup successful!');
+        }
+
+        // Otherwise if this is an HTML-wanting browser, redirect to /welcome.
+        return res.redirect('/welcome');
+      });
     });
   },
 
